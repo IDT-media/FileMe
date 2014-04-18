@@ -1,0 +1,176 @@
+@font-face {
+	font-family: 'polly';
+	src: url('../fonts/polly.eot');
+}
+@font-face {
+	font-family: 'polly';
+	src: url(data:application/x-font-ttf;charset=utf-8;base64,AAEAAAALAIAAAwAwT1MvMggi/LYAAAC8AAAAYGNtYXAaVcxXAAABHAAAAExnYXNwAAAAEAAAAWgAAAAIZ2x5ZkKBPecAAAFwAAABMGhlYWT/SI/nAAACoAAAADZoaGVhA6IB5gAAAtgAAAAkaG10eAMAAEAAAAL8AAAAFGxvY2EAKACsAAADEAAAAAxtYXhwAA0AWAAAAxwAAAAgbmFtZd1vMPcAAAM8AAABJ3Bvc3QAAwAAAAAEZAAAACAAAwIAAZAABQAAAUwBZgAAAEcBTAFmAAAA9QAZAIQAAAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAAAAAAAABAAADmAAHg/+D/4AHgACAAAAABAAAAAAAAAAAAAAAgAAAAAAACAAAAAwAAABQAAwABAAAAFAAEADgAAAAKAAgAAgACAAEAIOYA//3//wAAAAAAIOYA//3//wAB/+MaBAADAAEAAAAAAAAAAAAAAAEAAf//AA8AAQAAAAAAAAAAAAIAADc5AQAAAAABAAAAAAAAAAAAAgAANzkBAAAAAAEAAAAAAAAAAAACAAA3OQEAAAAABwBA/+ABwAHgAA4AEwAtAEYASwBQAFUAAAEhIg4CHQEhNTQuAiMnFyM3MzcjIg4CFQcUHgI7ATI+AjUnNC4CIzEXISIOAhcTHgM7ATI+AjcTNi4CIwMjJzMVMyM1MxUzIzUzBwGQ/uAKEQ0IAYAIDREKVAeGB3gEgAUJCAUKAgYIBaAFCAYCCgUICQVY/tAHCwgEARoBBgkMB/AHDAkGARoBBAgLB9gwEEBgQEBQMEAQAaAIDREKEBAKEQ0IIDIyIAQGCQVDBQgHAwMHCAVDBQkGBKAFCQsH/uAHCwkFBQkLBwEgBwsJBf7g4ODg4ODgAAAAAAEAAAABAACtHoTeXw889QALAgAAAAAAzzSnlQAAAADPNKeVAAD/4AHAAeAAAAAIAAIAAAAAAAAAAQAAAeD/4AAAAgAAAAAAAcAAAQAAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAABAAAAAgAAQAAAAAAACgAUAB4AmAABAAAABQBWAAcAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAADgCuAAEAAAAAAAEACgAAAAEAAAAAAAIADgA5AAEAAAAAAAMACgAgAAEAAAAAAAQACgBHAAEAAAAAAAUAFgAKAAEAAAAAAAYABQAqAAEAAAAAAAoAKABRAAMAAQQJAAEACgAAAAMAAQQJAAIADgA5AAMAAQQJAAMACgAgAAMAAQQJAAQACgBHAAMAAQQJAAUAFgAKAAMAAQQJAAYACgAvAAMAAQQJAAoAKABRAHAAbwBsAGwAeQBWAGUAcgBzAGkAbwBuACAAMQAuADAAcABvAGwAbAB5cG9sbHkAcABvAGwAbAB5AFIAZQBnAHUAbABhAHIAcABvAGwAbAB5AEcAZQBuAGUAcgBhAHQAZQBkACAAYgB5ACAASQBjAG8ATQBvAG8AbgAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==) format('truetype'),
+		 url(data:application/font-woff;charset=utf-8;base64,d09GRk9UVE8AAAS4AAoAAAAABHAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABDRkYgAAAA9AAAAU0AAAFNqsM7sU9TLzIAAAJEAAAAYAAAAGAIIvy2Y21hcAAAAqQAAABMAAAATBpVzFdnYXNwAAAC8AAAAAgAAAAIAAAAEGhlYWQAAAL4AAAANgAAADb/SI/naGhlYQAAAzAAAAAkAAAAJAOiAeZobXR4AAADVAAAABQAAAAUAwAAQG1heHAAAANoAAAABgAAAAYABVAAbmFtZQAAA3AAAAEnAAABJ91vMPdwb3N0AAAEmAAAACAAAAAgAAMAAAEABAQAAQEBBnBvbGx5AAECAAEAOvgcAvgbA/gYBB4KABlT/4uLHgoAGVP/i4sMB4tr+JT4dAUdAAAAcA8dAAAAdREdAAAACR0AAAFEEgAGAQEGCw0PEhdwb2xseXBvbGx5dTB1MXUyMHVFNjAwAAACAYkAAwAFAQEEBwoNx/yUDvyUDvyUDvuUDvgk+DQV+7SLBXCLdnaLcAiLe/gUi4ubBYumdqBwiwg3qxWSWfsai5K99wyLBY+rFfsUiwV+i3+AiX4IgUgFiX6VgZiLCPc0iwWYi5WViZgIgc4FiZh/ln6LCIuLBeP7NBX7xIsFeYt+fY15CKX7tAWNeZp9nYsI94SLBZ2LmpmNnQil97QFjZ1+mXmLCPts+7QVW4t793TLi4v7dAXrixVLi4v3dMuLi/t0BduLFVuLi/d0y4t7+3QFDviUFPiUFYsMCgAAAAADAgABkAAFAAABTAFmAAAARwFMAWYAAAD1ABkAhAAAAAAAAAAAAAAAAAAAAAEQAAAAAAAAAAAAAAAAAAAAAEAAAOYAAeD/4P/gAeAAIAAAAAEAAAAAAAAAAAAAACAAAAAAAAIAAAADAAAAFAADAAEAAAAUAAQAOAAAAAoACAACAAIAAQAg5gD//f//AAAAAAAg5gD//f//AAH/4xoEAAMAAQAAAAAAAAAAAAAAAQAB//8ADwABAAAAAQAAHj0ty18PPPUACwIAAAAAAM80p5UAAAAAzzSnlQAA/+ABwAHgAAAACAACAAAAAAAAAAEAAAHg/+AAAAIAAAAAAAHAAAEAAAAAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAAAQAAAAIAAEAAAFAAAAUAAAAAAA4ArgABAAAAAAABAAoAAAABAAAAAAACAA4AOQABAAAAAAADAAoAIAABAAAAAAAEAAoARwABAAAAAAAFABYACgABAAAAAAAGAAUAKgABAAAAAAAKACgAUQADAAEECQABAAoAAAADAAEECQACAA4AOQADAAEECQADAAoAIAADAAEECQAEAAoARwADAAEECQAFABYACgADAAEECQAGAAoALwADAAEECQAKACgAUQBwAG8AbABsAHkAVgBlAHIAcwBpAG8AbgAgADEALgAwAHAAbwBsAGwAeXBvbGx5AHAAbwBsAGwAeQBSAGUAZwB1AGwAYQByAHAAbwBsAGwAeQBHAGUAbgBlAHIAYQB0AGUAZAAgAGIAeQAgAEkAYwBvAE0AbwBvAG4AAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=) format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="polly-ico-"], [class*=" polly-ico-"] {
+	font-family: 'polly';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.polly-ico-remove:before {
+	content: "\e600";
+}
+
+ul#polly-options {
+	margin: 20px;
+	padding: 0;
+	list-style: none;
+}
+
+#polly-options > li {
+	height: 35px;
+	line-height: 35px;
+	border-top: 1px solid #eee;
+	padding: 0 40px 0 10px;
+}
+
+#polly-options > li:first-child {
+	border-top: none;
+}
+
+#polly-questions li:hover {
+	background-color: #fafafa;
+}
+
+#polly-options .polly-row .editable-inline {
+	float: left;
+}
+
+#polly-options input[type="text"] {
+	border: none;
+	background: transparent;
+}
+
+.polly-add-new {
+	text-align: right;
+}
+
+.polly-drag-handle {
+	display: inline-block;
+	position: relative;
+	float: left;
+	left: -6px;
+	width: 5px;
+	height: 23px;
+	line-height: 1;
+	margin: 6px 0;
+	cursor: move;
+	background-repeat: no-repeat;
+}
+
+#polly-options li:hover .polly-drag-handle {
+	background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
+}
+
+.polly-remove {
+	position: relative;
+	display: inline-block;
+	float: right;
+	right: -30px;
+	cursor: pointer;
+}
+
+.polly-editable {
+	text-decoration: none;
+	float: left;
+	border: none;
+	display: block;
+	width: 90%;
+	cursor: text;
+}
+
+.polly-drag-helper {
+	display: block;
+	background-color: #fcf8e3;
+	border: 1px solid #faebcc;
+	height: 35px;
+	line-height: 35px;
+	padding: 0 20px 0 10px;
+}
+
+.polly-vote-results-container {
+	position: relative;
+	padding-top: 50%; 
+	height: 0
+	margin: 20px 0;
+	border-radius: 4px;
+	border: 1px solid #ddd;
+}
+
+.polly-vote-results {
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+}
+
+.editable-buttons button.ui-button {
+	margin-top: 0;
+	margin-bottom: 4px;
+}
+
+.polly.polly-button a {
+	position: relative;
+	padding-left: 20px;
+}
+
+.polly.polly-button.add a:before {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	content: url('[[$theme_url]]/images/icons/system/newobject.gif');
+}
+
+.visuallyhidden {
+	border: 0;
+	clip: rect(0, 0, 0, 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+}
+
+.cf:before, .cf:after { 
+	content: ''; 
+	display: table;
+}
+
+.cf:after, .clear { 
+	clear: both; 
+}
+
+@media screen and (max-width: 420px) {
+	.polly-editable {
+		width: 85%;
+	}
+	
+	#polly-options > li {
+		height: auto;
+		line-height: 1.8;
+		padding-top: 8px;
+		padding-bottom: 3px;
+	}
+	
+	#polly-options .polly-row .editable-inline {
+		width: 60%;
+	}
+}
