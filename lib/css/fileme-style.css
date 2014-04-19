@@ -1,0 +1,612 @@
+@font-face {
+	font-family: 'fileme';
+	src:url('[[$module_url]]/lib/fonts/fileme.eot?cnu688');
+	src:url('[[$module_url]]/lib/fonts/fileme.eot?#iefixcnu688') format('embedded-opentype'),
+		url('[[$module_url]]/lib/fonts/fileme.woff?cnu688') format('woff'),
+		url('[[$module_url]]/lib/fonts/fileme.ttf?cnu688') format('truetype'),
+		url('[[$module_url]]/lib/fonts/fileme.svg?cnu688#fileme') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="fileme-ico-"], [class*=" fileme-ico-"] {
+	font-family: 'fileme';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.fileme-ico-edit:before {
+	content: "\f044";
+}
+.fileme-ico-folder:before {
+	content: "\f07b";
+}
+.fileme-ico-folder-open:before {
+	content: "\f07c";
+}
+.fileme-ico-gears:before {
+	content: "\f085";
+}
+.fileme-ico-dm:before {
+	content: "\e000";
+}
+.fileme-ico-ds2:before {
+	content: "\e001";
+}
+.fileme-ico-g22:before {
+	content: "\e002";
+}
+.fileme-ico-gp2:before {
+	content: "\e003";
+}
+.fileme-ico-z1:before {
+	content: "\e004";
+}
+.fileme-ico-aac:before {
+	content: "\e005";
+}
+.fileme-ico-aif:before {
+	content: "\e006";
+}
+.fileme-ico-ai:before {
+	content: "\e007";
+}
+.fileme-ico-apk:before {
+	content: "\e008";
+}
+.fileme-ico-app6:before {
+	content: "\e009";
+}
+.fileme-ico-asf1:before {
+	content: "\e00a";
+}
+.fileme-ico-asp:before {
+	content: "\e00b";
+}
+.fileme-ico-aspx:before {
+	content: "\e00c";
+}
+.fileme-ico-asx2:before {
+	content: "\e00d";
+}
+.fileme-ico-avi4:before {
+	content: "\e00e";
+}
+.fileme-ico-bak:before {
+	content: "\e00f";
+}
+.fileme-ico-bat8:before {
+	content: "\e010";
+}
+.fileme-ico-bin6:before {
+	content: "\e011";
+}
+.fileme-ico-bmp2:before {
+	content: "\e012";
+}
+.fileme-ico-cab:before {
+	content: "\e013";
+}
+.fileme-ico-cad1:before {
+	content: "\e014";
+}
+.fileme-ico-cdr2:before {
+	content: "\e015";
+}
+.fileme-ico-cer:before {
+	content: "\e016";
+}
+.fileme-ico-cfg2:before {
+	content: "\e017";
+}
+.fileme-ico-cfm2:before {
+	content: "\e018";
+}
+.fileme-ico-cgi2:before {
+	content: "\e019";
+}
+.fileme-ico-class3:before {
+	content: "\e01a";
+}
+.fileme-ico-com:before {
+	content: "\e01b";
+}
+.fileme-ico-cpl2:before {
+	content: "\e01c";
+}
+.fileme-ico-cpp1:before {
+	content: "\e01d";
+}
+.fileme-ico-crx:before {
+	content: "\e01e";
+}
+.fileme-ico-csr:before {
+	content: "\e01f";
+}
+.fileme-ico-css5:before {
+	content: "\e020";
+}
+.fileme-ico-csv2:before {
+	content: "\e021";
+}
+.fileme-ico-cue2:before {
+	content: "\e022";
+}
+.fileme-ico-cur1:before {
+	content: "\e023";
+}
+.fileme-ico-dat2:before {
+	content: "\e024";
+}
+.fileme-ico-db2:before {
+	content: "\e025";
+}
+.fileme-ico-dbf2:before {
+	content: "\e026";
+}
+.fileme-ico-dds2:before {
+	content: "\e027";
+}
+.fileme-ico-dem2:before {
+	content: "\e028";
+}
+.fileme-ico-dll2:before {
+	content: "\e029";
+}
+.fileme-ico-dmg3:before {
+	content: "\e02a";
+}
+.fileme-ico-dmp2:before {
+	content: "\e02b";
+}
+.fileme-ico-doc2:before {
+	content: "\e02c";
+}
+.fileme-ico-docx:before {
+	content: "\e02d";
+}
+.fileme-ico-drv1:before {
+	content: "\e02e";
+}
+.fileme-ico-dtd2:before {
+	content: "\e02f";
+}
+.fileme-ico-dwg2:before {
+	content: "\e030";
+}
+.fileme-ico-dxf1:before {
+	content: "\e031";
+}
+.fileme-ico-elf2:before {
+	content: "\e032";
+}
+.fileme-ico-eps2:before {
+	content: "\e033";
+}
+.fileme-ico-eps5:before {
+	content: "\e034";
+}
+.fileme-ico-exe3:before {
+	content: "\e035";
+}
+.fileme-ico-fla2:before {
+	content: "\e036";
+}
+.fileme-ico-flash10:before {
+	content: "\e037";
+}
+.fileme-ico-flv:before {
+	content: "\e038";
+}
+.fileme-ico-fnt:before {
+	content: "\e039";
+}
+.fileme-ico-fon1:before {
+	content: "\e03a";
+}
+.fileme-ico-gam2:before {
+	content: "\e03b";
+}
+.fileme-ico-gbr1:before {
+	content: "\e03c";
+}
+.fileme-ico-ged2:before {
+	content: "\e03d";
+}
+.fileme-ico-gif3:before {
+	content: "\e03e";
+}
+.fileme-ico-gpx1:before {
+	content: "\e03f";
+}
+.fileme-ico-gzip2:before {
+	content: "\e040";
+}
+.fileme-ico-gz:before {
+	content: "\e041";
+}
+.fileme-ico-hqz:before {
+	content: "\e042";
+}
+.fileme-ico-html9:before {
+	content: "\e043";
+}
+.fileme-ico-ibooks1:before {
+	content: "\e044";
+}
+.fileme-ico-icns:before {
+	content: "\e045";
+}
+.fileme-ico-ico2:before {
+	content: "\e046";
+}
+.fileme-ico-ics2:before {
+	content: "\e047";
+}
+.fileme-ico-iff:before {
+	content: "\e048";
+}
+.fileme-ico-indd2:before {
+	content: "\e049";
+}
+.fileme-ico-iso1:before {
+	content: "\e04a";
+}
+.fileme-ico-iso4:before {
+	content: "\e04b";
+}
+.fileme-ico-jar8:before {
+	content: "\e04c";
+}
+.fileme-ico-jpg3:before {
+	content: "\e04d";
+}
+.fileme-ico-js2:before {
+	content: "\e04e";
+}
+.fileme-ico-jsp2:before {
+	content: "\e04f";
+}
+.fileme-ico-key35:before {
+	content: "\e050";
+}
+.fileme-ico-kml1:before {
+	content: "\e051";
+}
+.fileme-ico-kmz:before {
+	content: "\e052";
+}
+.fileme-ico-lnk2:before {
+	content: "\e053";
+}
+.fileme-ico-log2:before {
+	content: "\e054";
+}
+.fileme-ico-lua:before {
+	content: "\e055";
+}
+.fileme-ico-m3u:before {
+	content: "\e056";
+}
+.fileme-ico-m4a1:before {
+	content: "\e057";
+}
+.fileme-ico-m4v2:before {
+	content: "\e058";
+}
+.fileme-ico-macho:before {
+	content: "\e059";
+}
+.fileme-ico-max2:before {
+	content: "\e05a";
+}
+.fileme-ico-mdb2:before {
+	content: "\e05b";
+}
+.fileme-ico-mdf2:before {
+	content: "\e05c";
+}
+.fileme-ico-mid:before {
+	content: "\e05d";
+}
+.fileme-ico-mim:before {
+	content: "\e05e";
+}
+.fileme-ico-mov2:before {
+	content: "\e05f";
+}
+.fileme-ico-mp36:before {
+	content: "\e060";
+}
+.fileme-ico-mp4:before {
+	content: "\e061";
+}
+.fileme-ico-mpa:before {
+	content: "\e062";
+}
+.fileme-ico-mpg3:before {
+	content: "\e063";
+}
+.fileme-ico-msg2:before {
+	content: "\e064";
+}
+.fileme-ico-msi2:before {
+	content: "\e065";
+}
+.fileme-ico-nes1:before {
+	content: "\e066";
+}
+.fileme-ico-object4:before {
+	content: "\e067";
+}
+.fileme-ico-odb2:before {
+	content: "\e068";
+}
+.fileme-ico-odc2:before {
+	content: "\e069";
+}
+.fileme-ico-odf2:before {
+	content: "\e06a";
+}
+.fileme-ico-odg:before {
+	content: "\e06b";
+}
+.fileme-ico-odi2:before {
+	content: "\e06c";
+}
+.fileme-ico-odp2:before {
+	content: "\e06d";
+}
+.fileme-ico-ods2:before {
+	content: "\e06e";
+}
+.fileme-ico-odt5:before {
+	content: "\e06f";
+}
+.fileme-ico-odt:before {
+	content: "\e070";
+}
+.fileme-ico-odx:before {
+	content: "\e071";
+}
+.fileme-ico-ogg:before {
+	content: "\e072";
+}
+.fileme-ico-otf1:before {
+	content: "\e073";
+}
+.fileme-ico-otf:before {
+	content: "\e074";
+}
+.fileme-ico-pages4:before {
+	content: "\e075";
+}
+.fileme-ico-pct2:before {
+	content: "\e076";
+}
+.fileme-ico-pdb2:before {
+	content: "\e077";
+}
+.fileme-ico-pdf19:before {
+	content: "\e078";
+}
+.fileme-ico-pif2:before {
+	content: "\e079";
+}
+.fileme-ico-pkg2:before {
+	content: "\e07a";
+}
+.fileme-ico-pl2:before {
+	content: "\e07b";
+}
+.fileme-ico-png3:before {
+	content: "\e07c";
+}
+.fileme-ico-pps2:before {
+	content: "\e07d";
+}
+.fileme-ico-ppt:before {
+	content: "\e07e";
+}
+.fileme-ico-pptx2:before {
+	content: "\e07f";
+}
+.fileme-ico-psd3:before {
+	content: "\e080";
+}
+.fileme-ico-ps:before {
+	content: "\e081";
+}
+.fileme-ico-pub2:before {
+	content: "\e082";
+}
+.fileme-ico-python3:before {
+	content: "\e083";
+}
+.fileme-ico-rar2:before {
+	content: "\e084";
+}
+.fileme-ico-ra:before {
+	content: "\e085";
+}
+.fileme-ico-raw2:before {
+	content: "\e086";
+}
+.fileme-ico-rm:before {
+	content: "\e087";
+}
+.fileme-ico-rom2:before {
+	content: "\e088";
+}
+.fileme-ico-rpm2:before {
+	content: "\e089";
+}
+.fileme-ico-rss29:before {
+	content: "\e08a";
+}
+.fileme-ico-rtf:before {
+	content: "\e08b";
+}
+.fileme-ico-sav:before {
+	content: "\e08c";
+}
+.fileme-ico-sdf:before {
+	content: "\e08d";
+}
+.fileme-ico-sitx2:before {
+	content: "\e08e";
+}
+.fileme-ico-sql3:before {
+	content: "\e08f";
+}
+.fileme-ico-sql5:before {
+	content: "\e090";
+}
+.fileme-ico-srt:before {
+	content: "\e091";
+}
+.fileme-ico-svg1:before {
+	content: "\e092";
+}
+.fileme-ico-swf1:before {
+	content: "\e093";
+}
+.fileme-ico-sys:before {
+	content: "\e094";
+}
+.fileme-ico-tar1:before {
+	content: "\e095";
+}
+.fileme-ico-tex:before {
+	content: "\e096";
+}
+.fileme-ico-tga2:before {
+	content: "\e097";
+}
+.fileme-ico-thm1:before {
+	content: "\e098";
+}
+.fileme-ico-tiff1:before {
+	content: "\e099";
+}
+.fileme-ico-tmp:before {
+	content: "\e09a";
+}
+.fileme-ico-torrent:before {
+	content: "\e09b";
+}
+.fileme-ico-ttf2:before {
+	content: "\e09c";
+}
+.fileme-ico-txt2:before {
+	content: "\e09d";
+}
+.fileme-ico-uue2:before {
+	content: "\e09e";
+}
+.fileme-ico-vb:before {
+	content: "\e09f";
+}
+.fileme-ico-vcd2:before {
+	content: "\e0a0";
+}
+.fileme-ico-vcf2:before {
+	content: "\e0a1";
+}
+.fileme-ico-vob:before {
+	content: "\e0a2";
+}
+.fileme-ico-wav2:before {
+	content: "\e0a3";
+}
+.fileme-ico-wma1:before {
+	content: "\e0a4";
+}
+.fileme-ico-wmv2:before {
+	content: "\e0a5";
+}
+.fileme-ico-wpd2:before {
+	content: "\e0a6";
+}
+.fileme-ico-wps:before {
+	content: "\e0a7";
+}
+.fileme-ico-wsf2:before {
+	content: "\e0a8";
+}
+.fileme-ico-xhtml:before {
+	content: "\e0a9";
+}
+.fileme-ico-xlr2:before {
+	content: "\e0aa";
+}
+.fileme-ico-xls1:before {
+	content: "\e0ab";
+}
+.fileme-ico-xlsx:before {
+	content: "\e0ac";
+}
+.fileme-ico-xml5:before {
+	content: "\e0ad";
+}
+.fileme-ico-yuv2:before {
+	content: "\e0ae";
+}
+.fileme-ico-zip6:before {
+	content: "\e0af";
+}
+
+.fileme-ui .no-list {
+	list-style: none !important;
+}
+
+.fileme-ui .no-margin {
+	margin: 0 !important;
+}
+
+.fileme-ui .no-padding {
+	padding: 0 !important;
+}
+.fileme-breadcrumb {
+	background-color: #f5f5f5;
+	border-radius: 3px;
+	border: 1px solid #eee;
+	font-size: 16px;
+}
+
+.fileme-breadcrumb-navigation > li {
+	display: inline-block;
+}
+
+.fileme-breadcrumb-navigation > li > a,
+.fileme-breadcrumb-navigation > li > span {
+	padding: 6px 6px 6px 8px;
+	display: block;
+}
+
+.visuallyhidden {
+	border: 0;
+	clip: rect(0, 0, 0, 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+}
+
+.cf:before, .cf:after { 
+	content: ''; 
+	display: table;
+}
+
+.cf:after, .clear { 
+	clear: both; 
+}
+
