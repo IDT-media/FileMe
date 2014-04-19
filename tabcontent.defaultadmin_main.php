@@ -15,7 +15,7 @@
 #
 # Goran Ilic, <ja@ich-mach-das.at>
 # Web: www.ich-mach-das.at
-# 
+#
 # Tapio Löytty, <tapsa@orange-media.fi>
 # Web: www.orange-media.fi
 #
@@ -38,17 +38,58 @@
 #
 #-------------------------------------------------------------------------
 
-if (!is_object(cmsms())) exit;
+if ( !is_object(cmsms()))
+	exit ;
 
 #---------------------
 # Process list
 #---------------------
-
+$path = fileme_utils::get_current_working_path();
 $files = fileme_utils::index();
-$items = array();
+$folders = explode('/', $path);
 
-foreach($files as $file) {
+$items = array();
+$breacrumbs = array();
+
+// building breadcrumb navigation
+for ($i = 0; $i < count($folders); $i++) {
+	if ($folders[$i] == '') {
+		unset($folders[$i]);
+	}
+}
+
+$folders = array_values($folders);
+$count = count($folders);
+$prev = '';
+
+for ($i = 0; $i < $count; $i++) {
 	
+	$breadcrumb = new stdClass();
+	
+	$breadcrumb->name = $folders[$i];
+	$breadcrumb->url  = '';
+	
+	if ($folders[$i] != '') {
+		
+		$back = array($folders[$i]);
+		$length = count($back);
+
+		for ($k = 0; $k < $length; $k++) {
+			$prev .= $back[$k] . DIR_SEPARATOR;
+		}
+		unset($back);
+		
+		if ($i != $count - 1) {
+			$breadcrumb->url = $this->CreateLink($id, 'admin_ajax_change_directory', $returnid, $breadcrumb->name, array('previous_dir' => $prev), '', true);
+		}
+	}
+	
+	$breadcrumbs[] = $breadcrumb;
+}
+
+// building folder and file list
+foreach ($files as $file) {
+
 	$item = new stdClass();
 	
 	$item->modified = $file['modified'];
@@ -56,7 +97,14 @@ foreach($files as $file) {
 	$item->size     = $file['size'];
 	$item->ext      = $file['ext'];
 	$item->mime     = $file['mime'];
+	$item->type     = $file['type'];
 	
+	if ($item->type == 'directory') {
+		$item->url = $this->CreateLink($id, 'admin_ajax_change_directory', $returnid, $item->name, array('dir' => $path . $item->name), '', true);
+	} else {
+		$item->url = '';
+	}
+
 	$items[] = $item;
 }
 
@@ -64,7 +112,8 @@ foreach($files as $file) {
 # Smarty processing
 #---------------------
 
+$smarty->assign('breadcrumbs', $breadcrumbs);
 $smarty->assign('items', $items);
-echo $this->ProcessTemplate('main_tab.tpl');
 
+echo $this->ProcessTemplate('main_tab.tpl');
 ?>

@@ -108,12 +108,25 @@ class fileme_utils
 	/**
 	 * @description Returns current working directory
 	 */
-	public function get_working_directory()
+	public function get_current_working_path()
+	{
+		$default = 'uploads' . DIR_SEPARATOR;
+		$this->path = cms_userprefs::get('fileme_working_directory', $default);
+		
+		$dir = fileme_utils::clean_path($this->path);
+
+		return $dir;
+	}
+	
+	/**
+	 * @description Returns full path to working directory
+	 */
+	public function get_full_working_path()
 	{
 		$config = cms_utils::get_config();
-		// TODO Logic for user pref and current selected directory
+
 		$this->root = $config['root_path'];
-		$this->path = $this->root . DIRECTORY_SEPARATOR . 'uploads';
+		$this->path = $this->root . DIR_SEPARATOR . fileme_utils::get_current_working_path();
 		
 		$dir = fileme_utils::clean_path($this->path);
 
@@ -125,7 +138,7 @@ class fileme_utils
 	 */
 	public function index()
 	{
-		$dir = fileme_utils::get_working_directory();
+		$dir = fileme_utils::get_full_working_path();
 
 		if (file_exists($dir)) {
 			$index = array();
@@ -134,17 +147,17 @@ class fileme_utils
 				while (false !== ($object = readdir($handle))) {
 					if ($object != '.' && $object != '..') {
 						if (is_dir($this->path . '/' . $object)) {
-							$modified = filemtime($this->path . DIRECTORY_SEPARATOR . $object);
+							$modified = filemtime($this->path . DIR_SEPARATOR . $object);
 							$type     = 'directory';
-							$size     = fileme_utils::format_bytes($this->path . DIRECTORY_SEPARATOR . $object);
+							$size     = fileme_utils::format_bytes($this->path . DS . $object);
 							$ext      = 'dir';
 							$mime     = '';
 						} else {
-							$modified = filemtime($this->path . DIRECTORY_SEPARATOR . $object);
+							$modified = filemtime($this->path . DIR_SEPARATOR . $object);
 							$type     = 'file';
-							$size     = fileme_utils::format_bytes($this->path . DIRECTORY_SEPARATOR . $object);
+							$size     = fileme_utils::format_bytes($this->path . DS . $object);
 							$ext      = pathinfo($object, PATHINFO_EXTENSION);
-							$mime     = fileme_utils::get_file_mime($this->path . DIRECTORY_SEPARATOR . $object); 
+							$mime     = fileme_utils::get_file_mime($this->path . DS . $object); 
 						}
 						$index[] = array(
 							'modified' => $modified,
