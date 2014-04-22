@@ -46,25 +46,7 @@ if (!is_object(cmsms())) exit;
 # Check params
 #---------------------
 
-if (isset($params['dir'])) {
-	$dir = $params['dir'] . DS;
-} else if (isset($params['previous_dir'])) {
-	$dir = $params['previous_dir'];
-}
+$config = cms_utils::get_config();
+$root = $config['root_path'];
 
-cms_userprefs::set('fileme_working_directory', $dir);
-
-#---------------------
-# Process response
-#---------------------
-$files = fileme_utils::index();
-
-if ($this->status == 'success' && empty($this->message)) {
-	$this->message = 'Directory content succesfully loaded';
-}
-
-$response = $this->response($this->status, $this->message, $this->data);
-
-header('Content-Type: application/json');
-echo($response);
 ?>

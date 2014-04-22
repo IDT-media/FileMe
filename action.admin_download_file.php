@@ -46,25 +46,32 @@ if (!is_object(cmsms())) exit;
 # Check params
 #---------------------
 
-if (isset($params['dir'])) {
-	$dir = $params['dir'] . DS;
-} else if (isset($params['previous_dir'])) {
-	$dir = $params['previous_dir'];
+$config = cms_utils::get_config();
+$root = $config['root_path'];
+$file = '';
+$mime = '';
+$path = '';
+
+// TODO handle error response
+if (isset($params['filename'])) {
+	$file = $this->decode($params['filename']);
 }
 
-cms_userprefs::set('fileme_working_directory', $dir);
+if (isset($params['mime'])) {
+	$mime = $this->decode($params['mime']);
+}
+
+if (isset($params['dir'])) {
+	$path = $params['dir'];
+}
 
 #---------------------
 # Process response
 #---------------------
-$files = fileme_utils::index();
 
-if ($this->status == 'success' && empty($this->message)) {
-	$this->message = 'Directory content succesfully loaded';
-}
+header('Content-Type: ' . $mime);
+header('Content-Disposition: attachment; filename=' . $file);
+header('Pragma: no-cache');
+readfile($root . DS . $path . $file);
 
-$response = $this->response($this->status, $this->message, $this->data);
-
-header('Content-Type: application/json');
-echo($response);
 ?>

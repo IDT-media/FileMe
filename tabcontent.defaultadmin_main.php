@@ -45,7 +45,7 @@ if ( !is_object(cmsms()))
 # Process list
 #---------------------
 $path = fileme_utils::get_current_working_path();
-$files = fileme_utils::index();
+$files = json_decode(fileme_utils::index());
 $folders = explode('/', $path);
 
 $items = array();
@@ -75,12 +75,12 @@ for ($i = 0; $i < $count; $i++) {
 		$length = count($back);
 
 		for ($k = 0; $k < $length; $k++) {
-			$prev .= $back[$k] . DIR_SEPARATOR;
+			$prev .= $back[$k] . DS;
 		}
 		unset($back);
 		
 		if ($i != $count - 1) {
-			$breadcrumb->url = $this->CreateLink($id, 'admin_ajax_change_directory', $returnid, $breadcrumb->name, array('previous_dir' => $prev), '', true);
+			$breadcrumb->url = $this->CreateLink($id, 'admin_ajax_change_directory', $returnid, '', array('previous_dir' => $prev), '', true);
 		}
 	}
 	
@@ -88,24 +88,15 @@ for ($i = 0; $i < $count; $i++) {
 }
 
 // building folder and file list
-foreach ($files as $file) {
-
-	$item = new stdClass();
-	
-	$item->modified = $file['modified'];
-	$item->name     = $file['name'];
-	$item->size     = $file['size'];
-	$item->ext      = $file['ext'];
-	$item->mime     = $file['mime'];
-	$item->type     = $file['type'];
-	
-	if ($item->type == 'directory') {
-		$item->url = $this->CreateLink($id, 'admin_ajax_change_directory', $returnid, $item->name, array('dir' => $path . $item->name), '', true);
-	} else {
-		$item->url = '';
+if ($files->data !== null) {
+	foreach ($files->data as $file) {
+		
+		if ($file->type == 'directory') {
+			$file->url = $this->CreateLink($id, 'admin_ajax_change_directory', $returnid, '', array('dir' => $path . $file->name), '', true);
+		} else {
+			$file->url = $this->CreateLink($id, 'admin_download_file', $returnid, '', array('dir' => $path, 'filename' => $this->encode($file->name), 'mime' => $this->encode($file->mime)), '', true) . '&showtemplate=false';
+		}
 	}
-
-	$items[] = $item;
 }
 
 #---------------------
@@ -113,7 +104,7 @@ foreach ($files as $file) {
 #---------------------
 
 $smarty->assign('breadcrumbs', $breadcrumbs);
-$smarty->assign('items', $items);
+$smarty->assign('items', $files->data);
 
-echo $this->ProcessTemplate('main_tab.tpl');
+echo $this->ProcessTemplate('fileme.main_tab.tpl');
 ?>

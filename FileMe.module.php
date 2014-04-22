@@ -39,12 +39,6 @@
 #-------------------------------------------------------------------------
 
 /*****************************************************************
- CONSTANTS
-*****************************************************************/
-
-define('DIR_SEPARATOR','/');
-
-/*****************************************************************
  MAIN CLASS
 *****************************************************************/
 
@@ -215,7 +209,7 @@ class FileMe extends CMSModule
 	public function GetHeaderHTML()
 	{
 		return <<<EOT
-
+<script src="{$this->GetModuleURLPath()}/lib/js/fileme.functions.js"></script>
 EOT;
 	}
 
@@ -232,6 +226,40 @@ EOT;
 		$smarty->assignByRef($this->GetName(), $this);
 		
 		parent::DoAction($name,$id,$params,$returnid);
+	}
+
+	#---------------------
+	# Custom Module methods
+	#---------------------
+	
+	/**
+	 * Encodes a given string to a base64 string
+	 */
+	function encode($string)
+	{
+		return base64_encode($string);
+	}
+	
+	/**
+	 * Decodes a base64 given string back to normal string
+	 */
+	function decode($string)
+	{
+		return base64_decode($string);
+	}
+	
+	/**
+	 * Handles a response with given information by status, message and data and returns a JSON encoded data
+	 */
+	public function response($status, $message, $data){
+			
+		if ($this->data) {
+			$json = json_encode(array('status' => $this->status, 'message' => $this->message, 'data' => $this->data));
+		} else {
+			$json = json_encode(array('status' => $this->status, 'message' => $this->message, 'data' => null));
+		}
+
+		return $json;
 	}
 
 } // end of class

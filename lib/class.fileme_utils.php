@@ -42,6 +42,9 @@ class fileme_utils
 {
 	public $root;
 	public $path;
+	public $message;
+	public $data;
+	public $status;
 
 	private function __construct()
 	{
@@ -110,7 +113,8 @@ class fileme_utils
 	 */
 	public function get_current_working_path()
 	{
-		$default = 'uploads' . DIR_SEPARATOR;
+		//TODO Handle module default settings and advanced permissions
+		$default = 'uploads' . DS;
 		$this->path = cms_userprefs::get('fileme_working_directory', $default);
 		
 		$dir = fileme_utils::clean_path($this->path);
@@ -126,7 +130,7 @@ class fileme_utils
 		$config = cms_utils::get_config();
 
 		$this->root = $config['root_path'];
-		$this->path = $this->root . DIR_SEPARATOR . fileme_utils::get_current_working_path();
+		$this->path = $this->root . DS . fileme_utils::get_current_working_path();
 		
 		$dir = fileme_utils::clean_path($this->path);
 
@@ -146,26 +150,28 @@ class fileme_utils
 			if (is_dir($this->path) && $handle = opendir($this->path)) {
 				while (false !== ($object = readdir($handle))) {
 					if ($object != '.' && $object != '..') {
-						if (is_dir($this->path . '/' . $object)) {
-							$modified = filemtime($this->path . DIR_SEPARATOR . $object);
-							$type     = 'directory';
-							$size     = fileme_utils::format_bytes($this->path . DS . $object);
-							$ext      = 'dir';
-							$mime     = '';
+						
+						$modified   = filemtime($this->path . DS . $object);
+						$size       = fileme_utils::format_bytes($this->path . DS . $object);
+						$permission = substr(sprintf('%o', fileperms($this->path . DS . $object)), -4);
+						
+						if (is_dir($this->path . DS . $object)) {
+							$type = 'directory';
+							$ext  = 'dir';
+							$mime = '';
 						} else {
-							$modified = filemtime($this->path . DIR_SEPARATOR . $object);
-							$type     = 'file';
-							$size     = fileme_utils::format_bytes($this->path . DS . $object);
-							$ext      = pathinfo($object, PATHINFO_EXTENSION);
-							$mime     = fileme_utils::get_file_mime($this->path . DS . $object); 
+							$type = 'file';
+							$ext  = pathinfo($object, PATHINFO_EXTENSION);
+							$mime = fileme_utils::get_file_mime($this->path . DS . $object); 
 						}
 						$index[] = array(
-							'modified' => $modified,
-							'name'     => $object, 
-							'type'     => $type, 
-							'size'     => $size,
-							'ext'      => $ext,
-							'mime'     => $mime
+							'modified'   => $modified,
+							'name'       => $object, 
+							'type'       => $type, 
+							'size'       => $size,
+							'ext'        => $ext,
+							'mime'       => $mime,
+							'permission' => $permission
 						);
 					}
 				}
@@ -176,22 +182,24 @@ class fileme_utils
 				foreach ($index as $item => $data) {
 					if ($data['type'] == 'directory') {
 						$folders[] = array(
-							'modified' => $data['modified'], 
-							'name'     => $data['name'], 
-							'type'     => $data['type'], 
-							'size'     => $data['size'],
-							'ext'      => $data['ext'],
-							'mime'     => $data['mime']
+							'modified'  => $data['modified'], 
+							'name'       => $data['name'], 
+							'type'       => $data['type'], 
+							'size'       => $data['size'],
+							'ext'        => $data['ext'],
+							'mime'       => $data['mime'],
+							'permission' => $data['permission']
 						);
 					}
 					if ($data['type'] == 'file') {
 						$files[] = array(
-							'modified' => $data['modified'], 
-							'name'     => $data['name'], 
-							'type'     => $data['type'], 
-							'size'     => $data['size'],
-							'ext'      => $data['ext'],
-							'mime'     => $data['mime']
+							'modified'   => $data['modified'], 
+							'name'       => $data['name'], 
+							'type'       => $data['type'], 
+							'size'       => $data['size'],
+							'ext'        => $data['ext'],
+							'mime'       => $data['mime'],
+							'permission' => $data['permission']
 						);
 					}
 				}
@@ -207,9 +215,24 @@ class fileme_utils
 
 				$output = array_merge($folders, $files);
 
-				return $output;
+				$this->status = 'success';
+				
+				if (!count($output)) {
+					$this->message = 'Directory is empty';
+				}
+				$this->data = $output;
+			} else {
+				$this->status = 'error';
+				$this->message = 'Directory does not exist';
+				$this->data = null;
 			}
+		} else {
+			$this->status = 'error';
+			$this->message = 'File or path does not exist';
+			$this->data = null;
 		}
+		
+		return $this->response($this->status, $this->message, $this->data);
 	}
 
 } // end of class
