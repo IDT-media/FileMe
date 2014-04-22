@@ -57,7 +57,7 @@ cms_userprefs::set('fileme_working_directory', $dir);
 #---------------------
 # Process response
 #---------------------
-$files = fileme_utils::index();
+$files = $this->index();
 
 if ($this->status == 'success' && empty($this->message)) {
 	$this->message = 'Directory content succesfully loaded';

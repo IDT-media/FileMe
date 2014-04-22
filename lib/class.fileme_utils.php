@@ -40,18 +40,13 @@
 
 class fileme_utils
 {
-	public $root;
-	public $path;
-	public $message;
-	public $data;
-	public $status;
 
 	private function __construct()
 	{
 
 	}
 	
-	private function get_file_mime($file)
+	public static function get_file_mime($file)
 	{
 		$finfo = finfo_open(FILEINFO_MIME_TYPE);
 		$mime  = finfo_file($finfo, $file); 
@@ -60,11 +55,27 @@ class fileme_utils
 		
 		return $mime;
 	}
+	
+	/**
+	 * Encodes a given string to a base64 string
+	 */
+	public static function encode($string)
+	{
+		return base64_encode($string);
+	}
+	
+	/**
+	 * Decodes a base64 given string back to normal string
+	 */
+	public static function decode($string)
+	{
+		return base64_decode($string);
+	}
 
 	/**
 	 * @description Replaces backslash with slash for Windows setup and prevents Null Byte injection
 	 */
-	final static public function clean_path($path)
+	public static function clean_path($path)
 	{
 		$path = str_replace('\\', '/', $path);
 		$path = str_replace(chr(0), '', $path);
@@ -75,10 +86,10 @@ class fileme_utils
 	/**
 	 * @description Converts Bytes to human readable values
 	 */
-	final static public function format_bytes($path)
+	public static function format_bytes($path)
 	{
 		if (is_dir($path)) {
-			$bytes = fileme_utils::get_directory_size($path);
+			$bytes = self::get_directory_size($path);
 		} else {
 			$bytes = sprintf('%u', filesize($path));
 		}
@@ -106,133 +117,6 @@ class fileme_utils
 		}
 		
 		return $size;
-	}
-	
-	/**
-	 * @description Returns current working directory
-	 */
-	public function get_current_working_path()
-	{
-		//TODO Handle module default settings and advanced permissions
-		$default = 'uploads' . DS;
-		$this->path = cms_userprefs::get('fileme_working_directory', $default);
-		
-		$dir = fileme_utils::clean_path($this->path);
-
-		return $dir;
-	}
-	
-	/**
-	 * @description Returns full path to working directory
-	 */
-	public function get_full_working_path()
-	{
-		$config = cms_utils::get_config();
-
-		$this->root = $config['root_path'];
-		$this->path = $this->root . DS . fileme_utils::get_current_working_path();
-		
-		$dir = fileme_utils::clean_path($this->path);
-
-		return $dir;
-	}
-
-	/**
-	 * @description Returns directories and files from a given directory
-	 */
-	public function index()
-	{
-		$dir = fileme_utils::get_full_working_path();
-
-		if (file_exists($dir)) {
-			$index = array();
-
-			if (is_dir($this->path) && $handle = opendir($this->path)) {
-				while (false !== ($object = readdir($handle))) {
-					if ($object != '.' && $object != '..') {
-						
-						$modified   = filemtime($this->path . DS . $object);
-						$size       = fileme_utils::format_bytes($this->path . DS . $object);
-						$permission = substr(sprintf('%o', fileperms($this->path . DS . $object)), -4);
-						
-						if (is_dir($this->path . DS . $object)) {
-							$type = 'directory';
-							$ext  = 'dir';
-							$mime = '';
-						} else {
-							$type = 'file';
-							$ext  = pathinfo($object, PATHINFO_EXTENSION);
-							$mime = fileme_utils::get_file_mime($this->path . DS . $object); 
-						}
-						$index[] = array(
-							'modified'   => $modified,
-							'name'       => $object, 
-							'type'       => $type, 
-							'size'       => $size,
-							'ext'        => $ext,
-							'mime'       => $mime,
-							'permission' => $permission
-						);
-					}
-				}
-
-				$folders = array();
-				$files = array();
-				
-				foreach ($index as $item => $data) {
-					if ($data['type'] == 'directory') {
-						$folders[] = array(
-							'modified'  => $data['modified'], 
-							'name'       => $data['name'], 
-							'type'       => $data['type'], 
-							'size'       => $data['size'],
-							'ext'        => $data['ext'],
-							'mime'       => $data['mime'],
-							'permission' => $data['permission']
-						);
-					}
-					if ($data['type'] == 'file') {
-						$files[] = array(
-							'modified'   => $data['modified'], 
-							'name'       => $data['name'], 
-							'type'       => $data['type'], 
-							'size'       => $data['size'],
-							'ext'        => $data['ext'],
-							'mime'       => $data['mime'],
-							'permission' => $data['permission']
-						);
-					}
-				}
-
-				// TODO - sort by date, filename ascending/descending, filesize??
-				function sorter($a, $b, $key = 'name')
-				{
-					return strnatcmp($a[$key], $b[$key]);
-				}
-
-				usort($folders, 'sorter');
-				usort($files, 'sorter');
-
-				$output = array_merge($folders, $files);
-
-				$this->status = 'success';
-				
-				if (!count($output)) {
-					$this->message = 'Directory is empty';
-				}
-				$this->data = $output;
-			} else {
-				$this->status = 'error';
-				$this->message = 'Directory does not exist';
-				$this->data = null;
-			}
-		} else {
-			$this->status = 'error';
-			$this->message = 'File or path does not exist';
-			$this->data = null;
-		}
-		
-		return $this->response($this->status, $this->message, $this->data);
 	}
 
 } // end of class
