@@ -54,11 +54,11 @@ $path = '';
 
 // TODO handle error response
 if (isset($params['filename'])) {
-	$file = $this->decode($params['filename']);
+	$file = fileme_utils::decode($params['filename']);
 }
 
 if (isset($params['mime'])) {
-	$mime = $this->decode($params['mime']);
+	$mime = fileme_utils::decode($params['mime']);
 }
 
 if (isset($params['dir'])) {

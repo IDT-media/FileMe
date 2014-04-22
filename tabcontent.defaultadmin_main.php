@@ -44,8 +44,8 @@ if ( !is_object(cmsms()))
 #---------------------
 # Process list
 #---------------------
-$path = fileme_utils::get_current_working_path();
-$files = json_decode(fileme_utils::index());
+$path = $this->get_current_working_path();
+$files = json_decode($this->index());
 $folders = explode('/', $path);
 
 $items = array();
@@ -94,7 +94,7 @@ if ($files->data !== null) {
 		if ($file->type == 'directory') {
 			$file->url = $this->CreateLink($id, 'admin_ajax_change_directory', $returnid, '', array('dir' => $path . $file->name), '', true);
 		} else {
-			$file->url = $this->CreateLink($id, 'admin_download_file', $returnid, '', array('dir' => $path, 'filename' => $this->encode($file->name), 'mime' => $this->encode($file->mime)), '', true) . '&showtemplate=false';
+			$file->url = $this->CreateLink($id, 'admin_download_file', $returnid, '', array('dir' => $path, 'filename' => fileme_utils::encode($file->name), 'mime' => fileme_utils::encode($file->mime)), '', true) . '&showtemplate=false';
 		}
 	}
 }
