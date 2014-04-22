@@ -99,5 +99,25 @@ class ModuleExtensions
 		return $output;
 	}
 	
+	#---------------------
+	# AJAX Helpers
+	#---------------------		
+	
+	static public function JSONRequest(&$mod, $data)
+	{
+		if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest') {
+				
+			$handlers = ob_list_handlers(); 
+			for ($cnt = 0; $cnt < sizeof($handlers); $cnt++) { ob_end_clean(); }
+
+			header("Content-type:application/json; charset=utf-8");					
+			
+			echo json_encode($data);
+			exit();
+		}
+		
+		return FALSE;
+	}		
+	
 } // end of class
 ?>

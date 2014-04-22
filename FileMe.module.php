@@ -44,6 +44,10 @@
 
 class FileMe extends CMSModule
 {
+	#---------------------
+	# Attributes
+	#---------------------	
+	
 	public $root;
 	public $path;
 	public $message;
@@ -272,7 +276,7 @@ EOT;
 	 */
 	public function index()
 	{
-		$dir = self::get_full_working_path();
+		$dir = $this->get_full_working_path();
 
 		if (file_exists($dir)) {
 			$index = array();
@@ -334,14 +338,8 @@ EOT;
 					}
 				}
 
-				// TODO - sort by date, filename ascending/descending, filesize??
-				function sorter($a, $b, $key = 'name')
-				{
-					return strnatcmp($a[$key], $b[$key]);
-				}
-
-				usort($folders, 'sorter');
-				usort($files, 'sorter');
+				fileme_utils::sort_aoo($folders);
+				fileme_utils::sort_aoo($files);
 
 				$output = array_merge($folders, $files);
 

@@ -118,6 +118,16 @@ class fileme_utils
 		
 		return $size;
 	}
+	
+	/**
+	 * @description Iterates through folder of specified directory and returns size of directory
+	 */
+	public static function sort_aoo(&$array, $key = 'name')
+	{
+		usort($array, function ($a, $b) use ($key) {
+			return strnatcmp($a[$key], $b[$key]);
+		});
+	}	
 
 } // end of class
 ?>
