@@ -193,7 +193,7 @@ class FileMe extends CMSModule
 	{
 		return @file_get_contents(dirname(__FILE__).'/changelog.html');
 	}
-
+/*
 	public function GetHelp()
 	{
 		$smarty = cmsms()->GetSmarty();
@@ -205,7 +205,7 @@ class FileMe extends CMSModule
 
 		return $this->ProcessTemplate('help.tpl');
 	}
-	
+	*/
 	public function GetHeaderHTML()
 	{
 		return <<<EOT
